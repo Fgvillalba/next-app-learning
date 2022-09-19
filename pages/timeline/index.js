@@ -4,7 +4,11 @@ export default function Timeline() {
     return (
     <>
         <h1>This is the timeline</h1>
-        <Link href='/'>go home</Link>
+        <Link href='/'>
+            <a>
+                go home
+            </a>
+        </Link>
         <style jsx>{`
             h1 {
                 font-size: 36px;
