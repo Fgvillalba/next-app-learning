@@ -1,6 +1,4 @@
 import Head from 'next/head'
-import Link from 'next/link'
-import Image from 'next/image'
 import AppLayout from '../components/AppLayout'
 import { colors } from '../styles/theme'
 import Button from '../components/Button'
