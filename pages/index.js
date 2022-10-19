@@ -2,22 +2,21 @@ import Head from 'next/head'
 import Link from 'next/link'
 import Image from 'next/image'
 import AppLayout from '../components/AppLayout'
-import {colors} from '../styles/theme'
+import { colors } from '../styles/theme'
 import Button from '../components/Button'
 import GitHubIcon from '../components/Icons/GitHub'
-import {loginWithGitHub, onUserStateChanged} from '../firebase/client'
-import {useState, useEffect} from 'react'
+import { loginWithGitHub, onUserStateChanged } from '../firebase/client'
+import { useState, useEffect } from 'react'
 
-
-export default function Home() {
+export default function Home () {
   const [user, setUser] = useState(undefined)
-  
+
   useEffect(() => {
     onUserStateChanged(setUser)
-  }, []);
+  }, [])
 
   const handleClick = () => {
-    loginWithGitHub().then(user => {  
+    loginWithGitHub().then(user => {
       setUser(user)
     }).catch(err => {
       console.log(err)
