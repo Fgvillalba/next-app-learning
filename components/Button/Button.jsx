@@ -1,4 +1,4 @@
-import { colors } from "../../styles/theme";
+import { colors } from "../../styles/theme"
 
 const Button = ({ children, onClick }) => {
   return (
@@ -27,7 +27,7 @@ const Button = ({ children, onClick }) => {
         }
       `}</style>
     </>
-  );
-};
+  )
+}
 
-export default Button;
+export default Button
