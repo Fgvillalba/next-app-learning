@@ -86,7 +86,7 @@ export default function Home() {
 
         h2 {
           color: ${colors.primary};
-          font-size: 21px;
+          font-size: 18px;
           margin: 0;
         }
       `}</style>
