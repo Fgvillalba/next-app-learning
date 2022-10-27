@@ -9,6 +9,7 @@ import Avatar from "components/Avatar"
 import { colors } from "styles/theme"
 
 import { loginWithGitHub, onUserStateChanged } from "../firebase/client"
+import Router from "next/router"
 
 export default function Home() {
   const [user, setUser] = useState(undefined)
@@ -16,6 +17,10 @@ export default function Home() {
   useEffect(() => {
     onUserStateChanged(setUser)
   }, [])
+
+  useEffect(() => {
+    user && Router.replace("/home")
+  }, [user])
 
   const handleClick = () => {
     loginWithGitHub()
@@ -79,13 +84,13 @@ export default function Home() {
         }
 
         h1 {
-          color: ${colors.secondary};
-          font-weight: 800;
+          color: ${colors.primary};
+          font-weight: 700;
           margin-bottom: 16px;
         }
 
         h2 {
-          color: ${colors.primary};
+          color: ${colors.secondary};
           font-size: 18px;
           margin: 0;
         }
