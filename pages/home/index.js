@@ -10,10 +10,11 @@ export default function Home() {
   const user = useUser()
 
   useEffect(() => {
-    fetch("http://localhost:3000/api/statuses/home_timeline")
-      .then((res) => res.json())
-      .then(setTimeline)
-  }, [])
+    user &&
+      fetch("http://localhost:3000/api/statuses/home_timeline")
+        .then((res) => res.json())
+        .then(setTimeline)
+  }, [user])
 
   return (
     <>
@@ -41,7 +42,9 @@ export default function Home() {
             )
           })}
         </section>
-        <nav></nav>
+        <nav>
+          <h3>NAV</h3>
+        </nav>
       </AppLayout>
       <style jsx>{`
         header {
@@ -54,6 +57,7 @@ export default function Home() {
           border-bottom: 1px solid #ddd;
           height: 49px;
           width: 100%;
+          padding-left: 12px;
         }
 
         h2 {
@@ -65,6 +69,8 @@ export default function Home() {
         nav {
           position: sticky;
           bottom: 0;
+          display: flex;
+          align-items: center;
           border-top: 1px solid #ddd;
           height: 49px;
           width: 100%;
