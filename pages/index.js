@@ -1,4 +1,5 @@
-import { useState, useEffect } from "react"
+import { useEffect } from "react"
+
 import Head from "next/head"
 import Router from "next/router"
 
@@ -9,26 +10,20 @@ import Spinner from "components/Spinner"
 
 import { colors } from "styles/theme"
 
-import { loginWithGitHub, onUserStateChanged } from "../firebase/client"
-
-const USER_STATES = {
-  UNKNOW: undefined,
-  NOT_LOGGED: null,
-}
+import { loginWithGitHub } from "../firebase/client"
+import useUser, { USER_STATES } from "hooks/useUser"
 
 export default function Home() {
-  const [user, setUser] = useState(USER_STATES.UNKNOW)
-
-  useEffect(() => {
-    onUserStateChanged(setUser)
-  }, [])
+  const user = useUser()
 
   useEffect(() => {
     user && Router.replace("/home")
   }, [user])
 
   const handleClick = () => {
-    loginWithGitHub()
+    loginWithGitHub().catch((err) => {
+      console.log(err)
+    })
   }
 
   return (

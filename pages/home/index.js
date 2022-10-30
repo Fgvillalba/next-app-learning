@@ -1,10 +1,13 @@
 import AppLayout from "components/AppLayout"
+import Avatar from "components/Avatar"
 import Neuit from "components/Neuit"
+import useUser from "hooks/useUser"
 
 import { useEffect, useState } from "react"
 
 export default function Home() {
   const [timeline, setTimeline] = useState([])
+  const user = useUser()
 
   useEffect(() => {
     fetch("http://localhost:3000/api/statuses/home_timeline")
@@ -16,7 +19,15 @@ export default function Home() {
     <>
       <AppLayout>
         <header>
-          <h2>Inicio</h2>
+          {user && (
+            <Avatar
+              resizeAvatar
+              alt={user.userName}
+              src={user.avatar}
+              text="Inicio"
+            />
+          )}
+          {/* <h2>Inicio</h2> */}
         </header>
         <section>
           {timeline.map((neuit) => {
