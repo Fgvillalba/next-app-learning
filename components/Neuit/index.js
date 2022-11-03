@@ -1,15 +1,25 @@
 import Avatar from "components/Avatar"
 
-export default function Neuit({ avatar, username, message, id }) {
+export default function Neuit({
+  avatar,
+  userName,
+  content,
+  id,
+  userId,
+  createdAt,
+}) {
   return (
     <>
-      <article key={id}>
+      <article>
         <div>
-          <Avatar alt={username} src={avatar} />
+          <Avatar alt={userName} src={avatar} />
         </div>
         <section>
-          <strong>{username}</strong>
-          <p>{message}</p>
+          <header>
+            <strong>{userName}</strong>
+            {/* <date>{createdAt}</date> */}
+          </header>
+          <p>{content}</p>
         </section>
       </article>
 
