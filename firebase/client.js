@@ -72,9 +72,20 @@ export const fetchLatestDevits = () => {
     return snapshot.docs.map((doc) => {
       const data = doc.data()
       const id = doc.id
+      const { createdAt } = data
+      const options = {
+        weekday: "long",
+        year: "numeric",
+        month: "short",
+        day: "numeric",
+      }
+      const intl = new Intl.DateTimeFormat("es-ES", options)
+      const normalizedCreatedAt = intl.format(createdAt.toDate())
+
       return {
-        id,
         ...data,
+        id,
+        createdAt: normalizedCreatedAt,
       }
     })
   })
