@@ -1,7 +1,7 @@
 import AppLayout from "components/AppLayout"
 import Avatar from "components/Avatar"
 import Neuit from "components/Neuit"
-import { fetchLatestDevits } from "../../firebase/client"
+import { fetchLatestNeuits } from "../../firebase/client"
 import useUser from "hooks/useUser"
 
 import { useEffect, useState } from "react"
@@ -12,7 +12,7 @@ export default function Home() {
 
   useEffect(() => {
     user &&
-      fetchLatestDevits().then((timeline) => {
+      fetchLatestNeuits().then((timeline) => {
         setTimeline(timeline)
       })
   }, [user])
