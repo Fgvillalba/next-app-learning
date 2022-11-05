@@ -36,6 +36,8 @@ export default css`
 
   main {
     position: relative;
+    display: flex;
+    flex-direction: column;
     background: #fff;
     box-shadow: 0 10px 25px rgba(187, 180, 193, 0.8);
     border-radius: 10px;

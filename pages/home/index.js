@@ -1,10 +1,15 @@
+import { useEffect, useState } from "react"
+
+import Link from "next/link"
+
 import AppLayout from "components/AppLayout"
 import Avatar from "components/Avatar"
 import Neuit from "components/Neuit"
 import { fetchLatestNeuits } from "../../firebase/client"
 import useUser from "hooks/useUser"
-
-import { useEffect, useState } from "react"
+import Create from "components/Icons/Create"
+import HomeIcon from "components/Icons/Home"
+import Search from "components/Icons/Search"
 
 export default function Home() {
   const [timeline, setTimeline] = useState([])
@@ -46,7 +51,21 @@ export default function Home() {
           })}
         </section>
         <nav>
-          <h3>NAV</h3>
+          <Link href="/home">
+            <a>
+              <HomeIcon height={32} width={32} stroke="#09F" />
+            </a>
+          </Link>
+          <Link href="/compose/neuit">
+            <a>
+              <Search height={32} width={32} stroke="#09F" />
+            </a>
+          </Link>
+          <Link href="/compose/neuit">
+            <a>
+              <Create height={32} width={32} stroke="#09F" />
+            </a>
+          </Link>
         </nav>
       </AppLayout>
       <style jsx>{`
@@ -69,15 +88,34 @@ export default function Home() {
           padding-left: 15px;
         }
 
+        section {
+          flex: 1;
+        }
+
         nav {
           position: sticky;
           bottom: 0;
           display: flex;
-          align-items: center;
           border-top: 1px solid #ddd;
           height: 49px;
           width: 100%;
           background: #fff;
+        }
+
+        nav a {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          flex: 1 1 auto;
+          height: 100%;
+        }
+
+         {
+          /* nav a:hover {
+          background: radial-gradient(#0099ff22 15%, transparent 16%)
+          background-size: 180px 180px; 
+          background-position: center;
+        } */
         }
       `}</style>
     </>
