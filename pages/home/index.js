@@ -1,12 +1,17 @@
 import { useEffect, useState } from "react"
 
 import Link from "next/link"
+import Head from "next/head"
+
+import { colors } from "styles/theme"
+import { addOpacityToColor } from "styles/utils"
+
+import { fetchLatestNeuits } from "../../firebase/client"
+import useUser from "hooks/useUser"
 
 import AppLayout from "components/AppLayout"
 import Avatar from "components/Avatar"
 import Neuit from "components/Neuit"
-import { fetchLatestNeuits } from "../../firebase/client"
-import useUser from "hooks/useUser"
 import Create from "components/Icons/Create"
 import HomeIcon from "components/Icons/Home"
 import Search from "components/Icons/Search"
@@ -24,6 +29,9 @@ export default function Home() {
 
   return (
     <>
+      <Head>
+        <title>Inicio / Nexter </title>
+      </Head>
       <AppLayout>
         <header>
           {user && (
@@ -53,17 +61,17 @@ export default function Home() {
         <nav>
           <Link href="/home">
             <a>
-              <HomeIcon height={32} width={32} stroke="#09F" />
+              <HomeIcon height={32} width={32} stroke={colors.secondary} />
             </a>
           </Link>
           <Link href="/compose/neuit">
             <a>
-              <Search height={32} width={32} stroke="#09F" />
+              <Search height={32} width={32} stroke={colors.secondary} />
             </a>
           </Link>
           <Link href="/compose/neuit">
             <a>
-              <Create height={32} width={32} stroke="#09F" />
+              <Create height={32} width={32} stroke={colors.secondary} />
             </a>
           </Link>
         </nav>
@@ -110,12 +118,17 @@ export default function Home() {
           height: 100%;
         }
 
-         {
-          /* nav a:hover {
-          background: radial-gradient(#0099ff22 15%, transparent 16%)
-          background-size: 180px 180px; 
+        nav a:hover {
+          background: radial-gradient(
+            ${addOpacityToColor(colors.primary, 0.12)} 15%,
+            transparent 16%
+          );
+          background-size: 180px 180px;
           background-position: center;
-        } */
+        }
+
+        nav a:hover > :global(svg) {
+          stroke: ${colors.primary};
         }
       `}</style>
     </>

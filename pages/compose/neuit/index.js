@@ -1,5 +1,7 @@
 import { useState } from "react"
+
 import Router from "next/router"
+import Head from "next/head"
 
 import AppLayout from "components/AppLayout"
 import Button from "components/Button"
@@ -47,6 +49,9 @@ export default function ComposeNeuit() {
 
   return (
     <>
+      <Head>
+        <title>Crear un Neuit </title>
+      </Head>
       <AppLayout>
         <form onSubmit={handleSubmit}>
           <textarea
