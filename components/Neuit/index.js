@@ -9,6 +9,7 @@ export default function Neuit({
   id,
   userId,
   createdAt,
+  img,
 }) {
   const timeAgo = useTimeAgo(createdAt)
   return (
@@ -24,6 +25,7 @@ export default function Neuit({
             <date>{timeAgo}</date>
           </header>
           <p>{content}</p>
+          {img && <img src={img} />}
         </section>
       </article>
 
@@ -36,6 +38,13 @@ export default function Neuit({
 
         div {
           padding-right: 10px;
+        }
+
+        img {
+          margin-top: 10px;
+          height: auto;
+          width: 100%;
+          border-radius: 10px;
         }
 
         date {

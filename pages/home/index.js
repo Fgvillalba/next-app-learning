@@ -54,6 +54,7 @@ export default function Home() {
                 content={neuit.content}
                 userId={neuit.userId}
                 createdAt={neuit.createdAt}
+                img={neuit.img}
               />
             )
           })}
