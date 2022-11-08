@@ -5,7 +5,6 @@ import { getDownloadURL } from "firebase/storage"
 import Router from "next/router"
 import Head from "next/head"
 
-import AppLayout from "components/AppLayout"
 import Button from "components/Button"
 import useUser from "hooks/useUser"
 import Avatar from "components/Avatar"
@@ -100,34 +99,32 @@ export default function ComposeNeuit() {
       <Head>
         <title>Crear un Neuit </title>
       </Head>
-      <AppLayout>
-        <section className="form-container">
-          {user && (
-            <section className="avatar-container">
-              <Avatar src={user.avatar} />
+      <section className="form-container">
+        {user && (
+          <section className="avatar-container">
+            <Avatar src={user.avatar} />
+          </section>
+        )}
+        <form onSubmit={handleSubmit}>
+          <textarea
+            onChange={handleMessageChange}
+            onDragEnter={handleDragEnter}
+            onDragLeave={handleDragLeave}
+            onDrop={handleDrop}
+            value={message}
+            placeholder="¿Qué esta pasando?"
+          />
+          {imgURL && (
+            <section className="remove-img">
+              <button onClick={() => setImgURL(null)}>x</button>
+              <img src={imgURL} />
             </section>
           )}
-          <form onSubmit={handleSubmit}>
-            <textarea
-              onChange={handleMessageChange}
-              onDragEnter={handleDragEnter}
-              onDragLeave={handleDragLeave}
-              onDrop={handleDrop}
-              value={message}
-              placeholder="¿Qué esta pasando?"
-            />
-            {imgURL && (
-              <section className="remove-img">
-                <button onClick={() => setImgURL(null)}>x</button>
-                <img src={imgURL} />
-              </section>
-            )}
-            <div>
-              <Button disabled={isNuitButtonDisabled}>Neuitear</Button>
-            </div>
-          </form>
-        </section>
-      </AppLayout>
+          <div>
+            <Button disabled={isNuitButtonDisabled}>Neuitear</Button>
+          </div>
+        </form>
+      </section>
       <style jsx>{`
         form {
           padding: 10px;

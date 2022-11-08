@@ -9,7 +9,6 @@ import { addOpacityToColor } from "styles/utils"
 import { fetchLatestNeuits } from "../../firebase/client"
 import useUser from "hooks/useUser"
 
-import AppLayout from "components/AppLayout"
 import Avatar from "components/Avatar"
 import Neuit from "components/Neuit"
 import Create from "components/Icons/Create"
@@ -32,51 +31,49 @@ export default function Home() {
       <Head>
         <title>Inicio / Nexter </title>
       </Head>
-      <AppLayout>
-        <header>
-          {user && (
-            <Avatar
-              resizeAvatar
-              alt={user.userName}
-              src={user.avatar}
-              text="Inicio"
+      <header>
+        {user && (
+          <Avatar
+            resizeAvatar
+            alt={user.userName}
+            src={user.avatar}
+            text="Inicio"
+          />
+        )}
+        {/* <h2>Inicio</h2> */}
+      </header>
+      <section>
+        {timeline.map((neuit) => {
+          return (
+            <Neuit
+              key={neuit.id}
+              avatar={neuit.avatar}
+              userName={neuit.userName}
+              content={neuit.content}
+              userId={neuit.userId}
+              createdAt={neuit.createdAt}
+              img={neuit.img}
             />
-          )}
-          {/* <h2>Inicio</h2> */}
-        </header>
-        <section>
-          {timeline.map((neuit) => {
-            return (
-              <Neuit
-                key={neuit.id}
-                avatar={neuit.avatar}
-                userName={neuit.userName}
-                content={neuit.content}
-                userId={neuit.userId}
-                createdAt={neuit.createdAt}
-                img={neuit.img}
-              />
-            )
-          })}
-        </section>
-        <nav>
-          <Link href="/home">
-            <a>
-              <HomeIcon height={32} width={32} stroke={colors.secondary} />
-            </a>
-          </Link>
-          <Link href="/compose/neuit">
-            <a>
-              <Search height={32} width={32} stroke={colors.secondary} />
-            </a>
-          </Link>
-          <Link href="/compose/neuit">
-            <a>
-              <Create height={32} width={32} stroke={colors.secondary} />
-            </a>
-          </Link>
-        </nav>
-      </AppLayout>
+          )
+        })}
+      </section>
+      <nav>
+        <Link href="/home">
+          <a>
+            <HomeIcon height={32} width={32} stroke={colors.secondary} />
+          </a>
+        </Link>
+        <Link href="/compose/neuit">
+          <a>
+            <Search height={32} width={32} stroke={colors.secondary} />
+          </a>
+        </Link>
+        <Link href="/compose/neuit">
+          <a>
+            <Create height={32} width={32} stroke={colors.secondary} />
+          </a>
+        </Link>
+      </nav>
       <style jsx>{`
         header {
           background: #ffffffaa;
