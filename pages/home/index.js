@@ -77,7 +77,7 @@ export default function Home() {
       </nav>
       <style jsx>{`
         header {
-          background: #ffffffaa;
+          background: #ffffffcc;
           backdrop-filter: blur(7px);
           display: flex;
           align-items: center;
@@ -106,7 +106,7 @@ export default function Home() {
           border-top: 1px solid #ddd;
           height: 49px;
           width: 100%;
-          background: #ffffffaa;
+          background: #ffffffcc;
           backdrop-filter: blur(7px);
         }
 
