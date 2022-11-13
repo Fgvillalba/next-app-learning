@@ -15,26 +15,39 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig)
 
 const mapUserFromFirebaseAuthToUser = (userFromFirebase) => {
-  const {_tokenResponse} = userFromFirebase
-      const {screenName, photoUrl, email} = _tokenResponse
-      return {
-        avatar: photoUrl,
-        userName: screenName,
-        email
-      }
+  if (userFromFirebase) {
+    const {displayName, email, photoURL} = userFromFirebase
+    return {
+      avatar: photoURL,
+      userName: displayName,
+      email
+    }
+  } else {
+    return null
+  }
 }
 
 
 export const onUserStateChanged = (onChange) => {
-  return onAuthStateChanged(user => {
-    const normalizedUser = mapUserFromFirebaseAuthToUser(user)
-    onChange(normalizedUser)
+  const auth = getAuth(app)
+  return onAuthStateChanged(auth, user => {
+    console.log("authChanged")
+      const normalizedUser = mapUserFromFirebaseAuthToUser(user)
+      onChange(normalizedUser)
   })
 }
 
 export const loginWithGitHub = () => {
   const githubProvider = new GithubAuthProvider()
   const auth = getAuth(app)
-  return signInWithPopup(auth, githubProvider)
-    .then(mapUserFromFirebaseAuthToUser) //recibe el user y se lo pasa a la funcino como parametro
+  return signInWithPopup(auth, githubProvider) // se va ajecutar onAuthStateChanged
+    // .then(user => {
+    //   const {_tokenResponse} = user
+    //   const {screenName, photoUrl, email} = _tokenResponse
+    //   return mapUserFromFirebaseAuthToUser({
+    //     photoURL: photoUrl,
+    //     displayName: screenName,
+    //     email
+    //   })
+    // }) 
 }
