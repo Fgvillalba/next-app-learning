@@ -126,7 +126,7 @@ export default function Home() {
             ${addOpacityToColor(colors.primary, 0.12)} 15%,
             transparent 16%
           );
-          background-size: 180px 180px;
+          background-size: 150px 150px;
           background-position: center;
         }
 
