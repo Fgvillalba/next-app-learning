@@ -27,7 +27,7 @@ export default function Home() {
 
       <AppLayout>
         <section>
-          <img src='/vect-logo.png' alt='logo' />
+          <img src='/cubo-logo.png' alt='logo' />
           <h1>Nexter</h1>
           <h2>Talk about development <br /> with developers</h2>
           <div>
