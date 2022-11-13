@@ -6,6 +6,7 @@ import {
   Timestamp,
   query,
   getDocs,
+  orderBy,
 } from "firebase/firestore"
 import {
   GithubAuthProvider,
@@ -67,7 +68,7 @@ export const addNeuit = ({ avatar, content, userId, userName }) => {
 }
 
 export const fetchLatestNeuits = () => {
-  const q = query(collection(db, "neuits"))
+  const q = query(collection(db, "neuits"), orderBy("createdAt", "desc"))
   return getDocs(q).then((snapshot) => {
     return snapshot.docs.map((doc) => {
       const data = doc.data()

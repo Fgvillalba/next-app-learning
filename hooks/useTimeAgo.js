@@ -20,13 +20,13 @@ const getDateDif = (timestamp) => {
 }
 
 export default function useTimeAgo(timestamp) {
-  const [timeAgo, setTimeAgo] = useState(() => getDateDif(timestamp))
+  const [timeAgo, setTimeAgo] = useState(() => getDateDif(timestamp)) // si pasamos la ejecucion de la funcion getDateDif se ejecutaria siempre que el componente se renderize, de esta manera l o hace solo una vez
 
   useEffect(() => {
     const interval = setInterval(() => {
       const newTimeAgo = getDateDif(timestamp)
       setTimeAgo(newTimeAgo)
-    }, 1000)
+    }, 5000)
 
     return () => clearInterval(interval)
   }, [])
