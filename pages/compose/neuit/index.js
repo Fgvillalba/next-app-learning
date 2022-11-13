@@ -128,11 +128,13 @@ export default function ComposeNeuit() {
       <style jsx>{`
         form {
           padding: 10px;
+          width: 100%;
         }
 
         .form-container {
           display: flex;
           align-items: flex-start;
+          width: 100%;
         }
 
         .avatar-container {

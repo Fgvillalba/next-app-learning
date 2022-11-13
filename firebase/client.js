@@ -13,6 +13,7 @@ import {
   getAuth,
   signInWithPopup,
   onAuthStateChanged,
+  GoogleAuthProvider,
 } from "firebase/auth"
 import { getStorage, ref, uploadBytesResumable } from "firebase/storage"
 
@@ -43,6 +44,7 @@ const mapUserFromFirebaseAuthToUser = (userFromFirebase) => {
 export const onUserStateChanged = (onChange) => {
   const auth = getAuth(app)
   return onAuthStateChanged(auth, (user) => {
+    console.log({ userFromGoogle: user })
     const normalizedUser = user ? mapUserFromFirebaseAuthToUser(user) : null
     onChange(normalizedUser)
   })
@@ -51,8 +53,13 @@ export const onUserStateChanged = (onChange) => {
 export const loginWithGitHub = () => {
   const githubProvider = new GithubAuthProvider()
   const auth = getAuth(app)
-  console.log("loginWithgitHub")
   return signInWithPopup(auth, githubProvider) // se va ajecutar onAuthStateChanged
+}
+
+export const loginwithGoogle = () => {
+  const googleProvider = new GoogleAuthProvider()
+  const auth = getAuth(app)
+  return signInWithPopup(auth, googleProvider)
 }
 
 export const addNeuit = ({ avatar, content, userId, userName, img }) => {
