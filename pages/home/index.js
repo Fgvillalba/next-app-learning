@@ -53,6 +53,7 @@ export default function Home() {
               userId={neuit.userId}
               createdAt={neuit.createdAt}
               img={neuit.img}
+              id={neuit.id}
             />
           )
         })}

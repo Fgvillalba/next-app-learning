@@ -1,5 +1,7 @@
 import Avatar from "components/Avatar"
 
+import Link from "next/link"
+
 import useTimeAgo from "hooks/useTimeAgo"
 import useDateTimeFormater from "hooks/useDateTimeFormater"
 
@@ -24,7 +26,11 @@ export default function Neuit({
           <header>
             <strong>{userName}</strong>
             <span>·</span>
-            <time title={createdAtFormated}>{timeAgo}</time>
+            <Link href={`/status/${id}`}>
+              <a>
+                <time title={createdAtFormated}>{timeAgo}</time>
+              </a>
+            </Link>
           </header>
           <p>{content}</p>
           {img && <img src={img} />}
@@ -49,9 +55,14 @@ export default function Neuit({
           border-radius: 10px;
         }
 
-        time {
+        a {
           font-size: 14px;
           color: #555;
+          text-decoration: none;
+        }
+
+        a:hover {
+          text-decoration: underline;
         }
 
         p {
