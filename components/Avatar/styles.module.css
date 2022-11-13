@@ -6,8 +6,8 @@
 
 .avatarResized {
   border-radius: 9999px;
-  height: 42px;
-  width: 42px;
+  height: 32px;
+  width: 32px;
 }
 
 .avatar + strong {

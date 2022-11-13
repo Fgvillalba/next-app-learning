@@ -1,6 +1,7 @@
 import Avatar from "components/Avatar"
 
 import useTimeAgo from "hooks/useTimeAgo"
+import useDateTimeFormater from "hooks/useDateTimeFormater"
 
 export default function Neuit({
   avatar,
@@ -12,6 +13,7 @@ export default function Neuit({
   img,
 }) {
   const timeAgo = useTimeAgo(createdAt)
+  const createdAtFormated = useDateTimeFormater(createdAt)
   return (
     <>
       <article>
@@ -22,7 +24,7 @@ export default function Neuit({
           <header>
             <strong>{userName}</strong>
             <span>·</span>
-            <date>{timeAgo}</date>
+            <time datetime={createdAtFormated}>{timeAgo}</time>
           </header>
           <p>{content}</p>
           {img && <img src={img} />}
@@ -47,7 +49,7 @@ export default function Neuit({
           border-radius: 10px;
         }
 
-        date {
+        time {
           font-size: 14px;
           color: #555;
         }
