@@ -35,10 +35,12 @@ export default function Home() {
           <h1>Nexter</h1>
           <h2>Talk about development <br /> with developers</h2>
           <div>
-            <Button onClick={handleClick}>
-              <GitHubIcon fill="#fff" width={32} height={32} />
-              Login with GitHub
-            </Button>
+            {
+              user === null && <Button onClick={handleClick}>
+                <GitHubIcon fill="#fff" width={32} height={32} />
+                Login with GitHub
+              </Button>
+            }
           </div>
         </section>
       </AppLayout>

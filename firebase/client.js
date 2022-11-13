@@ -1,5 +1,5 @@
-import { initializeApp } from 'firebase/app'
-import { GithubAuthProvider, getAuth, signInWithPopup } from 'firebase/auth'
+import {initializeApp} from 'firebase/app'
+import {GithubAuthProvider, getAuth, signInWithPopup, onAuthStateChanged} from 'firebase/auth'
 
 
 const firebaseConfig = {
