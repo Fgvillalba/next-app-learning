@@ -3,3 +3,12 @@
   height: 49px;
   width: 49px;
 }
+
+.avatar + strong {
+  margin-left: 0.5rem;
+}
+
+.container {
+  display: flex;
+  align-items: center;
+}
