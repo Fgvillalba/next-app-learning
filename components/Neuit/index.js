@@ -1,5 +1,7 @@
 import Avatar from "components/Avatar"
 
+import useTimeAgo from "hooks/useTimeAgo"
+
 export default function Neuit({
   avatar,
   userName,
@@ -8,6 +10,7 @@ export default function Neuit({
   userId,
   createdAt,
 }) {
+  const timeAgo = useTimeAgo(createdAt)
   return (
     <>
       <article>
@@ -18,7 +21,7 @@ export default function Neuit({
           <header>
             <strong>{userName}</strong>
             <span>·</span>
-            <date>{createdAt}</date>
+            <date>{timeAgo}</date>
           </header>
           <p>{content}</p>
         </section>
