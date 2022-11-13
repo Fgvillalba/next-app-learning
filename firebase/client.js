@@ -7,6 +7,7 @@ import {
   query,
   getDocs,
   orderBy,
+  onSnapshot,
 } from "firebase/firestore"
 import {
   GithubAuthProvider,
@@ -77,19 +78,33 @@ export const addNeuit = ({ avatar, content, userId, userName, img }) => {
   })
 }
 
+const mapNeuitFromFirebaseToNeuitObject = (doc) => {
+  const data = doc.data()
+  const id = doc.id
+  const { createdAt } = data
+
+  return {
+    ...data,
+    id,
+    createdAt: +createdAt.toDate(),
+  }
+}
+
+export const listenLatestNeuits = (onChange) => {
+  const q = query(collection(db, "neuit"), orderBy("createdAt", "desc"))
+  return onSnapshot(q).then((snapshot) => {
+    const newNeuits = snapshot.docs.map((doc) => {
+      return mapNeuitFromFirebaseToNeuitObject(doc)
+    })
+    onChange(newNeuits)
+  })
+}
+
 export const fetchLatestNeuits = () => {
   const q = query(collection(db, "neuits"), orderBy("createdAt", "desc"))
   return getDocs(q).then((snapshot) => {
     return snapshot.docs.map((doc) => {
-      const data = doc.data()
-      const id = doc.id
-      const { createdAt } = data
-
-      return {
-        ...data,
-        id,
-        createdAt: +createdAt.toDate(),
-      }
+      return mapNeuitFromFirebaseToNeuitObject(doc)
     })
   })
 }
