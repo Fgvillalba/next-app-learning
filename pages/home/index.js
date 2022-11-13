@@ -1,6 +1,7 @@
 import AppLayout from "components/AppLayout"
 import Avatar from "components/Avatar"
 import Neuit from "components/Neuit"
+import { fetchLatestDevits } from "../../firebase/client"
 import useUser from "hooks/useUser"
 
 import { useEffect, useState } from "react"
@@ -11,9 +12,9 @@ export default function Home() {
 
   useEffect(() => {
     user &&
-      fetch("http://localhost:3000/api/statuses/home_timeline")
-        .then((res) => res.json())
-        .then(setTimeline)
+      fetchLatestDevits().then((timeline) => {
+        setTimeline(timeline)
+      })
   }, [user])
 
   return (
@@ -36,8 +37,10 @@ export default function Home() {
               <Neuit
                 key={neuit.id}
                 avatar={neuit.avatar}
-                username={neuit.username}
-                message={neuit.message}
+                userName={neuit.userName}
+                content={neuit.content}
+                userId={neuit.userId}
+                createdAt={neuit.createdAt}
               />
             )
           })}

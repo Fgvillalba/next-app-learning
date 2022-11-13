@@ -1,5 +1,12 @@
 import { initializeApp } from "firebase/app"
-import { getFirestore, collection, addDoc, Timestamp } from "firebase/firestore"
+import {
+  getFirestore,
+  collection,
+  addDoc,
+  Timestamp,
+  query,
+  getDocs,
+} from "firebase/firestore"
 import {
   GithubAuthProvider,
   getAuth,
@@ -56,5 +63,19 @@ export const addNeuit = ({ avatar, content, userId, userName }) => {
     createdAt: now,
     likesCount: 0,
     sharedCount: 0,
+  })
+}
+
+export const fetchLatestDevits = () => {
+  const q = query(collection(db, "neuits"))
+  return getDocs(q).then((snapshot) => {
+    return snapshot.docs.map((doc) => {
+      const data = doc.data()
+      const id = doc.id
+      return {
+        id,
+        ...data,
+      }
+    })
   })
 }
