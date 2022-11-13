@@ -1,6 +1,7 @@
 import Avatar from "components/Avatar"
 
 import Link from "next/link"
+import Router from "next/router"
 
 import useTimeAgo from "hooks/useTimeAgo"
 import useDateTimeFormater from "hooks/useDateTimeFormater"
@@ -16,9 +17,15 @@ export default function Neuit({
 }) {
   const timeAgo = useTimeAgo(createdAt)
   const createdAtFormated = useDateTimeFormater(createdAt)
+
+  const handleArticleClick = (e) => {
+    e.preventDefault()
+    Router.push(`/status/${id}`)
+  }
+
   return (
     <>
-      <article>
+      <article onClick={handleArticleClick}>
         <div>
           <Avatar alt={userName} src={avatar} />
         </div>
@@ -42,6 +49,11 @@ export default function Neuit({
           display: flex;
           padding: 10px 15px;
           border-bottom: 1px solid #ddd;
+        }
+
+        article:hover {
+          background: #e5e8ea;
+          cursor: pointer;
         }
 
         div {
