@@ -1,11 +1,11 @@
 import Link from 'next/link'
 import AppLayout from '../../components/AppLayout'
 
-export default function Timeline() {
+export default function Timeline({userName}) {
     return (
     <>  
         <AppLayout>
-        <h1>This is the timeline</h1>
+        <h1>This is the timeline of {userName}</h1>
         <nav>
             <Link href='/'>
                 <a>
@@ -32,3 +32,26 @@ export default function Timeline() {
     </>    
     )
 }   
+
+
+//getInitialProps, solo sirve para componentes PAGES
+Timeline.getInitialProps = () => {
+    return fetch('http://localhost:3000/api/hello')
+        .then(res => {
+            console.log(res)
+            return res.json()
+        })
+}
+
+// Timeline.getInitialProps = () => {
+//     return fetch('http://localhost:3000/api/hello')
+//         .then(res => {
+//             console.log(res)
+//             return res.json()
+//         })
+//         .then(response => {
+//             console.log(response)
+//             const {userName} = response
+//             return {userName}
+//         })
+// }
