@@ -18,7 +18,9 @@ export default function Home() {
         </h1>
         <nav className='nav'>
           <Link href='/timeline'>
+             <a>
              timeline
+             </a>
           </Link>
         </nav>
       </main>
