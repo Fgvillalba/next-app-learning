@@ -1,4 +1,4 @@
-import * as React from "react"
+import * as React from 'react'
 
 const GitHubIcon = (props) => (
   <svg
@@ -13,4 +13,3 @@ const GitHubIcon = (props) => (
 )
 
 export default GitHubIcon
-
