@@ -1,4 +1,5 @@
 import Head from 'next/head'
+import Link from 'next/link'
 import Image from 'next/image'
 import styles from '../styles/Home.module.css'
 
@@ -16,9 +17,9 @@ export default function Home() {
          <a href="https://nextjs.org">Nexter</a>
         </h1>
         <nav className='nav'>
-          <a href='/timeline'>
+          <Link href='/timeline'>
              timeline
-          </a>
+          </Link>
         </nav>
       </main>
 
