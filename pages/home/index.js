@@ -1,5 +1,5 @@
 import AppLayout from "components/AppLayout"
-import Avatar from "components/Avatar"
+import Neuit from "components/Neuit"
 
 import { useEffect, useState } from "react"
 
@@ -19,11 +19,14 @@ export default function Home() {
           <h2>Inicio</h2>
         </header>
         <section>
-          {timeline.map((devit) => {
+          {timeline.map((neuit) => {
             return (
-              <article key={devit.id}>
-                <Avatar alt={devit.username} src={devit.avatar} />
-              </article>
+              <Neuit
+                key={neuit.id}
+                avatar={neuit.avatar}
+                username={neuit.username}
+                message={neuit.message}
+              />
             )
           })}
         </section>
@@ -33,7 +36,7 @@ export default function Home() {
         header {
           display: flex;
           align-items: center;
-          position: fixed;
+          position: sticky;
           top: 0;
           border-bottom: 1px solid #ccc;
           height: 49px;
@@ -42,17 +45,18 @@ export default function Home() {
 
         h2 {
           font-size: 21px;
-          font-weight: 800;
+          font-weight: 700;
         }
 
         section {
-          padding-top: 100px;
+          padding-top: 49px;
           display: block;
+          height: 100%;
         }
 
         nav {
-          position: fixed;
-          bottom: 0;
+          position: sticky;
+          bottom: 0px;
           border-top: 1px solid #ccc;
           height: 49px;
           width: 100%;
