@@ -1,9 +1,14 @@
 import styles from "./styles.module.css"
 
-export default function Avatar({ alt, src, text }) {
+export default function Avatar({ alt, src, text, resizeAvatar }) {
   return (
     <div className={styles.container}>
-      <img className={styles.avatar} alt={alt} src={src} title={alt} />
+      <img
+        className={resizeAvatar ? styles.avatarResized : styles.avatar}
+        alt={alt}
+        src={src}
+        title={alt}
+      />
       {text && <strong>{text || alt}</strong>}
     </div>
   )

@@ -4,7 +4,17 @@
   width: 49px;
 }
 
+.avatarResized {
+  border-radius: 9999px;
+  height: 42px;
+  width: 42px;
+}
+
 .avatar + strong {
+  margin-left: 0.5rem;
+}
+
+.avatarResized + strong {
   margin-left: 0.5rem;
 }
 
