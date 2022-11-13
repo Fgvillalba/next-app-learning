@@ -24,7 +24,7 @@ export default function Neuit({
           <header>
             <strong>{userName}</strong>
             <span>·</span>
-            <time datetime={createdAtFormated}>{timeAgo}</time>
+            <time title={createdAtFormated}>{timeAgo}</time>
           </header>
           <p>{content}</p>
           {img && <img src={img} />}
