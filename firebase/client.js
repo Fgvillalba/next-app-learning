@@ -18,10 +18,13 @@ export const loginWithGitHub = () => {
   const githubProvider = new GithubAuthProvider()
   const auth = getAuth(app)
   return signInWithPopup(auth, githubProvider)
+    .then(user => {
+      const {_tokenResponse} = user
+      const {screenName, photoUrl, email} = _tokenResponse
+      return {
+        avatar: photoUrl,
+        userName: screenName,
+        email
+      }
+  })
 }
-
-
-// export const loginWithGitHub = () => {
-//   const githubProvider = new firebase.auth.Gi
-//   return fbAuth().signInWithPopup(githubProvider)
-// }

@@ -6,11 +6,15 @@ import {colors} from '../styles/theme'
 import Button from '../components/Button'
 import GitHubIcon from '../components/Icons/GitHub'
 import { loginWithGitHub } from '../firebase/client'
+import { useState } from 'react'
+
 
 export default function Home() {
+  const[user, setUser] = useState(null)
 
   const handleClick = () => {
-    loginWithGitHub().then(user => {
+    loginWithGitHub().then(user => {  
+      setUser(user)
       console.log(user)
     }).catch(err => {
       console.log(err)
