@@ -14,6 +14,7 @@ import {
   signInWithPopup,
   onAuthStateChanged,
 } from "firebase/auth"
+import { getStorage, ref, uploadBytesResumable } from "firebase/storage"
 
 const firebaseConfig = {
   apiKey: "AIzaSyCQe_GkHfNW9jomu6tfrNIh_A0htvg0pl0",
@@ -27,6 +28,7 @@ const firebaseConfig = {
 
 const app = initializeApp(firebaseConfig)
 const db = getFirestore(app)
+const storage = getStorage()
 
 const mapUserFromFirebaseAuthToUser = (userFromFirebase) => {
   const { displayName, email, photoURL, uid } = userFromFirebase
@@ -53,7 +55,7 @@ export const loginWithGitHub = () => {
   return signInWithPopup(auth, githubProvider) // se va ajecutar onAuthStateChanged
 }
 
-export const addNeuit = ({ avatar, content, userId, userName }) => {
+export const addNeuit = ({ avatar, content, userId, userName, img }) => {
   const now = Timestamp.fromDate(new Date())
 
   return addDoc(collection(db, "neuits"), {
@@ -61,6 +63,7 @@ export const addNeuit = ({ avatar, content, userId, userName }) => {
     content,
     userId,
     userName,
+    img,
     createdAt: now,
     likesCount: 0,
     sharedCount: 0,
@@ -82,4 +85,10 @@ export const fetchLatestNeuits = () => {
       }
     })
   })
+}
+
+export const uploadImage = (file) => {
+  const fileRef = ref(storage, `images/${file.name}`)
+  const task = uploadBytesResumable(fileRef, file)
+  return task
 }
