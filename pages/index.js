@@ -16,13 +16,6 @@ export default function Home() {
         <h1>
          <a href="https://nextjs.org">Nexter</a>
         </h1>
-        <nav className='nav'>
-          <Link href='/timeline'>
-             <a>
-             timeline
-             </a>
-          </Link>
-        </nav>
       </AppLayout>
 
       <style jsx>{`
@@ -34,11 +27,6 @@ export default function Home() {
         a {
           color: #09f;
           text-decoration: none; 
-        }
-
-        nav {
-          font-size: 24px;
-          text-align: center;
         }
       
       `}</style>
