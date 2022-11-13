@@ -42,12 +42,18 @@ export default css`
     width: 100%;
     height: 100%;
     overflow-y: auto;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+
+  main::-webkit-scrollbar {
+    display: none;
   }
 
   @media (min-width: ${breakpoints.mobile}) {
     main {
       width: ${breakpoints.mobile};
-      height: 90vh;
+      height: 90%;
     }
   }
 `

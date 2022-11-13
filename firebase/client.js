@@ -1,4 +1,5 @@
 import { initializeApp } from "firebase/app"
+import { getFirestore, collection, addDoc, Timestamp } from "firebase/firestore"
 import {
   GithubAuthProvider,
   getAuth,
@@ -17,13 +18,15 @@ const firebaseConfig = {
 }
 
 const app = initializeApp(firebaseConfig)
+const db = getFirestore(app)
 
 const mapUserFromFirebaseAuthToUser = (userFromFirebase) => {
-  const { displayName, email, photoURL } = userFromFirebase
+  const { displayName, email, photoURL, uid } = userFromFirebase
   return {
     avatar: photoURL,
     userName: displayName,
     email,
+    id: uid,
   }
 }
 
@@ -40,4 +43,18 @@ export const loginWithGitHub = () => {
   const auth = getAuth(app)
   console.log("loginWithgitHub")
   return signInWithPopup(auth, githubProvider) // se va ajecutar onAuthStateChanged
+}
+
+export const addNeuit = ({ avatar, content, userId, userName }) => {
+  const now = Timestamp.fromDate(new Date())
+
+  return addDoc(collection(db, "neuits"), {
+    avatar,
+    content,
+    userId,
+    userName,
+    createdAt: now,
+    likesCount: 0,
+    sharedCount: 0,
+  })
 }

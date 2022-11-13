@@ -1,17 +1,40 @@
+import { useState } from "react"
+
 import AppLayout from "components/AppLayout"
 import Button from "components/Button"
-// import useUser from "hooks/useUser"
+import useUser from "hooks/useUser"
+import { addNeuit } from "../../../firebase/client"
 
 export default function ComposeNeuit() {
-  // const user = useUser()
+  const user = useUser()
+  const [message, setMessage] = useState("")
+
+  const handleMessageChange = (event) => {
+    const { value } = event.target
+    setMessage(value)
+  }
+
+  const handleSubmit = (event) => {
+    event.preventDefault()
+    addNeuit({
+      avatar: user.avatar,
+      content: message,
+      userId: user.id,
+      userName: user.userName,
+    })
+  }
 
   return (
     <>
       <AppLayout>
-        <form>
-          <textarea placeholder="¿Qué esta pasando?"></textarea>
+        <form onSubmit={handleSubmit}>
+          <textarea
+            onChange={handleMessageChange}
+            value={message}
+            placeholder="¿Qué esta pasando?"
+          />
           <div>
-            <Button>Neuitear</Button>
+            <Button disabled={!message.length}>Neuitear</Button>
           </div>
         </form>
       </AppLayout>
