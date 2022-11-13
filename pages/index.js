@@ -1,15 +1,15 @@
 import { useState, useEffect } from "react"
 import Head from "next/head"
+import Router from "next/router"
 
 import AppLayout from "components/AppLayout"
 import Button from "components/Button"
 import GitHubIcon from "components/Icons/GitHub"
-import Avatar from "components/Avatar"
+import Spinner from "components/Spinner"
 
 import { colors } from "styles/theme"
 
 import { loginWithGitHub, onUserStateChanged } from "../firebase/client"
-import Router from "next/router"
 
 export default function Home() {
   const [user, setUser] = useState(undefined)
@@ -54,15 +54,7 @@ export default function Home() {
                 Login with GitHub
               </Button>
             )}
-            {user && user.avatar && (
-              <div>
-                <Avatar
-                  src={user.avatar}
-                  alt="user photo"
-                  text={user.userName}
-                />
-              </div>
-            )}
+            {user === undefined && <Spinner />}
           </div>
         </section>
       </AppLayout>
