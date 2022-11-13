@@ -2,6 +2,7 @@ import Head from 'next/head'
 import Link from 'next/link'
 import Image from 'next/image'
 import AppLayout from '../components/AppLayout'
+import {colors} from '../styles/theme'
 
 export default function Home() {
   return (
@@ -13,20 +14,35 @@ export default function Home() {
       </Head>
 
       <AppLayout>
-        <h1>
-         <a href="https://nextjs.org">Nexter</a>
-        </h1>
+        <section>
+          <img src='/vect-logo.png' alt='logo' />
+          <h1>Nexter</h1>
+          <h2>Talk about development <br /> with developers</h2>
+        </section>
       </AppLayout>
 
       <style jsx>{`
-        h1 {
-          text-align: center;
-          font-size: 48px;
+        section {
+          height: 100%;
+          display: grid;
+          place-content: center;
+          place-items: center;
         }
 
-        a {
-          color: #09f;
-          text-decoration: none; 
+        img {
+          width: 120px;
+        }
+
+        h1 {
+          color: ${colors.primary};
+          font-weight: 800;
+          margin-bottom: 16px;
+        }
+
+        h2 {
+          color: ${colors.secondary};
+          font-size: 21px;
+          margin: 0;
         }
       
       `}</style>
