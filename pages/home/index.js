@@ -34,11 +34,13 @@ export default function Home() {
       </AppLayout>
       <style jsx>{`
         header {
+          background: #ffffffaa;
+          backdrop-filter: blur(5px);
           display: flex;
           align-items: center;
           position: sticky;
           top: 0;
-          border-bottom: 1px solid #ccc;
+          border-bottom: 1px solid #ddd;
           height: 49px;
           width: 100%;
         }
@@ -46,20 +48,16 @@ export default function Home() {
         h2 {
           font-size: 21px;
           font-weight: 700;
-        }
-
-        section {
-          padding-top: 49px;
-          display: block;
-          height: 100%;
+          padding-left: 15px;
         }
 
         nav {
           position: sticky;
-          bottom: 0px;
-          border-top: 1px solid #ccc;
+          bottom: 0;
+          border-top: 1px solid #ddd;
           height: 49px;
           width: 100%;
+          background: #fff;
         }
       `}</style>
     </>

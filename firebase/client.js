@@ -38,14 +38,6 @@ export const onUserStateChanged = (onChange) => {
 export const loginWithGitHub = () => {
   const githubProvider = new GithubAuthProvider()
   const auth = getAuth(app)
+  console.log("loginWithgitHub")
   return signInWithPopup(auth, githubProvider) // se va ajecutar onAuthStateChanged
-    .then((user) => {
-      const { _tokenResponse } = user
-      const { screenName, photoUrl, email } = _tokenResponse
-      return mapUserFromFirebaseAuthToUser({
-        photoURL: photoUrl,
-        displayName: screenName,
-        email,
-      })
-    })
 }

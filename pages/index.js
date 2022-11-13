@@ -11,8 +11,13 @@ import { colors } from "styles/theme"
 
 import { loginWithGitHub, onUserStateChanged } from "../firebase/client"
 
+const USER_STATES = {
+  UNKNOW: undefined,
+  NOT_LOGGED: null,
+}
+
 export default function Home() {
-  const [user, setUser] = useState(undefined)
+  const [user, setUser] = useState(USER_STATES.UNKNOW)
 
   useEffect(() => {
     onUserStateChanged(setUser)
@@ -24,12 +29,6 @@ export default function Home() {
 
   const handleClick = () => {
     loginWithGitHub()
-      .then((user) => {
-        setUser(user)
-      })
-      .catch((err) => {
-        console.log(err)
-      })
   }
 
   return (
@@ -48,13 +47,13 @@ export default function Home() {
             Talk about development <br /> with developers
           </h2>
           <div>
-            {user === null && (
+            {user === USER_STATES.NOT_LOGGED && (
               <Button onClick={handleClick}>
                 <GitHubIcon fill="#fff" width={32} height={32} />
                 Login with GitHub
               </Button>
             )}
-            {user === undefined && <Spinner />}
+            {user === USER_STATES.UNKNOW && <Spinner />}
           </div>
         </section>
       </AppLayout>

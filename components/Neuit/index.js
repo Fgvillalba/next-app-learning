@@ -17,7 +17,7 @@ export default function Neuit({ avatar, username, message, id }) {
         article {
           display: flex;
           padding: 10px 15px;
-          border-bottom: 2px solid #eaf7ff;
+          border-bottom: 2px solid #eee;
         }
 
         div {
