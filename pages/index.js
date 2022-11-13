@@ -3,8 +3,20 @@ import Link from 'next/link'
 import Image from 'next/image'
 import AppLayout from '../components/AppLayout'
 import {colors} from '../styles/theme'
+import Button from '../components/Button'
+import GitHubIcon from '../components/Icons/GitHub'
+import { loginWithGitHub } from '../firebase/client'
 
 export default function Home() {
+
+  const handleClick = () => {
+    loginWithGitHub().then(user => {
+      console.log(user)
+    }).catch(err => {
+      console.log(err)
+    })
+  }
+
   return (
     <>
       <Head>
@@ -18,6 +30,12 @@ export default function Home() {
           <img src='/vect-logo.png' alt='logo' />
           <h1>Nexter</h1>
           <h2>Talk about development <br /> with developers</h2>
+          <div>
+            <Button onClick={handleClick}>
+              <GitHubIcon fill="#fff" width={32} height={32} />
+              Login with GitHub
+            </Button>
+          </div>
         </section>
       </AppLayout>
 
@@ -33,14 +51,18 @@ export default function Home() {
           width: 120px;
         }
 
+        div {
+          margin-top: 16px;
+        }
+
         h1 {
-          color: ${colors.primary};
+          color: ${colors.secondary};
           font-weight: 800;
           margin-bottom: 16px;
         }
 
         h2 {
-          color: ${colors.secondary};
+          color: ${colors.primary};
           font-size: 21px;
           margin: 0;
         }
