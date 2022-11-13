@@ -11,6 +11,9 @@ module.exports = {
   overrides: [
   ],
   parserOptions: {
+    ecmaFeatures: {
+      jsx: true
+    },
     ecmaVersion: 'latest',
     sourceType: 'module'
   },
@@ -18,5 +21,8 @@ module.exports = {
     'react'
   ],
   rules: {
+    'react/react-in-jsx-scope': 'off',
+    'react/prop-types': 'off',
+    'react/no-unknown-property': 'off'
   }
 }
