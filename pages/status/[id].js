@@ -4,7 +4,7 @@ import Neuit from "components/Neuit"
 import Spinner from "components/Spinner"
 
 export default function NeuitPage(props) {
-  if (!props.id)
+  if (!props.id) {
     return (
       <>
         <div>
@@ -21,6 +21,7 @@ export default function NeuitPage(props) {
         `}</style>
       </>
     )
+  }
 
   return (
     <>

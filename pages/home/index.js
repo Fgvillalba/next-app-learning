@@ -40,7 +40,6 @@ export default function Home() {
             text="Inicio"
           />
         )}
-        {/* <h2>Inicio</h2> */}
       </header>
       <section>
         {timeline.map((neuit) => {
@@ -87,6 +86,8 @@ export default function Home() {
           height: 49px;
           width: 100%;
           padding-left: 12px;
+          padding-top: 5px;
+          padding-bottom: 5px;
         }
 
         h2 {
@@ -108,6 +109,8 @@ export default function Home() {
           width: 100%;
           background: #ffffffcc;
           backdrop-filter: blur(7px);
+          padding-top: 5px;
+          padding-bottom: 5px;
         }
 
         nav a {

@@ -1,17 +1,18 @@
 import { useEffect } from "react"
 
+import { loginWithGitHub, loginwithGoogle } from "../firebase/client"
+import useUser, { USER_STATES } from "hooks/useUser"
+
 import Head from "next/head"
 import Router from "next/router"
 
 import AppLayout from "components/AppLayout"
 import Button from "components/Button"
 import GitHubIcon from "components/Icons/GitHub"
+import GoogleIcon from "components/Icons/Google"
 import Spinner from "components/Spinner"
 
 import { colors } from "styles/theme"
-
-import { loginWithGitHub } from "../firebase/client"
-import useUser, { USER_STATES } from "hooks/useUser"
 
 export default function Home() {
   const user = useUser()
@@ -20,8 +21,14 @@ export default function Home() {
     user && Router.replace("/home")
   }, [user])
 
-  const handleClick = () => {
+  const handleClickLoginGitHub = () => {
     loginWithGitHub().catch((err) => {
+      console.log(err)
+    })
+  }
+
+  const handleClickLoginGoogle = () => {
+    loginwithGoogle().catch((err) => {
       console.log(err)
     })
   }
@@ -43,10 +50,16 @@ export default function Home() {
           </h2>
           <div>
             {user === USER_STATES.NOT_LOGGED && (
-              <Button onClick={handleClick}>
-                <GitHubIcon fill="#fff" width={32} height={32} />
-                Login with GitHub
-              </Button>
+              <section className="login-buttons-cotainer">
+                <Button onClick={handleClickLoginGitHub}>
+                  <GitHubIcon fill="#fff" width={32} height={32} />
+                  Login with GitHub
+                </Button>
+                <Button onClick={handleClickLoginGoogle}>
+                  <GoogleIcon width={32} />
+                  Login with Google
+                </Button>
+              </section>
             )}
             {user === USER_STATES.UNKNOW && <Spinner />}
           </div>
@@ -59,6 +72,13 @@ export default function Home() {
           display: grid;
           place-content: center;
           place-items: center;
+        }
+
+        .login-buttons-cotainer {
+          display: flex;
+          flex-direction: column;
+          height: 100px;
+          justify-content: space-evenly;
         }
 
         img {
