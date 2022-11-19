@@ -80,6 +80,7 @@ export default function Neuit({
         p {
           margin: 0;
           line-height: 1.3125;
+          word-break: break-all;
         }
 
         span {
