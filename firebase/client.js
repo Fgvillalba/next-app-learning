@@ -5,8 +5,8 @@ import {
   addDoc,
   Timestamp,
   query,
-  getDocs,
   orderBy,
+  limit,
   onSnapshot,
 } from "firebase/firestore"
 import {
@@ -45,7 +45,6 @@ const mapUserFromFirebaseAuthToUser = (userFromFirebase) => {
 export const onUserStateChanged = (onChange) => {
   const auth = getAuth(app)
   return onAuthStateChanged(auth, (user) => {
-    console.log({ userFromGoogle: user })
     const normalizedUser = user ? mapUserFromFirebaseAuthToUser(user) : null
     onChange(normalizedUser)
   })
@@ -91,8 +90,12 @@ const mapNeuitFromFirebaseToNeuitObject = (doc) => {
 }
 
 export const listenLatestNeuits = (onChange) => {
-  const q = query(collection(db, "neuit"), orderBy("createdAt", "desc"))
-  return onSnapshot(q).then((snapshot) => {
+  const q = query(
+    collection(db, "neuits"),
+    orderBy("createdAt", "desc"),
+    limit(25)
+  )
+  return onSnapshot(q, (snapshot) => {
     const newNeuits = snapshot.docs.map((doc) => {
       return mapNeuitFromFirebaseToNeuitObject(doc)
     })
@@ -100,14 +103,14 @@ export const listenLatestNeuits = (onChange) => {
   })
 }
 
-export const fetchLatestNeuits = () => {
-  const q = query(collection(db, "neuits"), orderBy("createdAt", "desc"))
-  return getDocs(q).then((snapshot) => {
-    return snapshot.docs.map((doc) => {
-      return mapNeuitFromFirebaseToNeuitObject(doc)
-    })
-  })
-}
+// export const fetchLatestNeuits = () => {
+//   const q = query(collection(db, "neuits"), orderBy("createdAt", "desc"))
+//   return getDocs(q).then((snapshot) => {
+//     return snapshot.docs.map((doc) => {
+//       return mapNeuitFromFirebaseToNeuitObject(doc)
+//     })
+//   })
+// }
 
 export const uploadImage = (file) => {
   const fileRef = ref(storage, `images/${file.name}`)

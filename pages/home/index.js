@@ -6,7 +6,7 @@ import Head from "next/head"
 import { colors } from "styles/theme"
 import { addOpacityToColor } from "styles/utils"
 
-import { fetchLatestNeuits } from "../../firebase/client"
+import { listenLatestNeuits } from "../../firebase/client"
 import useUser from "hooks/useUser"
 
 import Avatar from "components/Avatar"
@@ -20,10 +20,15 @@ export default function Home() {
   const user = useUser()
 
   useEffect(() => {
-    user &&
-      fetchLatestNeuits().then((timeline) => {
-        setTimeline(timeline)
-      })
+    let unsuscribe
+    if (user) {
+      unsuscribe = listenLatestNeuits(setTimeline)
+    }
+    return () => unsuscribe && unsuscribe()
+    // user &&
+    //   fetchLatestNeuits().then((timeline) => {
+    //     setTimeline(timeline)
+    //   })
   }, [user])
 
   return (
