@@ -12,7 +12,7 @@ import {
 import {
   GithubAuthProvider,
   getAuth,
-  signInWithPopup,
+  signInWithRedirect,
   onAuthStateChanged,
   GoogleAuthProvider,
 } from "firebase/auth"
@@ -53,13 +53,13 @@ export const onUserStateChanged = (onChange) => {
 export const loginWithGitHub = () => {
   const githubProvider = new GithubAuthProvider()
   const auth = getAuth(app)
-  return signInWithPopup(auth, githubProvider) // se va ajecutar onAuthStateChanged
+  return signInWithRedirect(auth, githubProvider) // se va ajecutar onAuthStateChanged
 }
 
 export const loginwithGoogle = () => {
   const googleProvider = new GoogleAuthProvider()
   const auth = getAuth(app)
-  return signInWithPopup(auth, googleProvider)
+  return signInWithRedirect(auth, googleProvider)
 }
 
 export const addNeuit = ({ avatar, content, userId, userName, img }) => {

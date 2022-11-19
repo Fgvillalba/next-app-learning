@@ -6,13 +6,13 @@ import useUser, { USER_STATES } from "hooks/useUser"
 import Head from "next/head"
 import Router from "next/router"
 
-import AppLayout from "components/AppLayout"
 import Button from "components/Button"
 import GitHubIcon from "components/Icons/GitHub"
 import GoogleIcon from "components/Icons/Google"
 import Spinner from "components/Spinner"
 
 import { colors } from "styles/theme"
+import Logo from "components/Icons/Logo"
 
 export default function Home() {
   const user = useUser()
@@ -41,30 +41,28 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <AppLayout>
-        <section>
-          <img src="/cubo-logo.png" alt="logo" />
-          <h1>Nexter</h1>
-          <h2>
-            Talk about development <br /> with developers
-          </h2>
-          <div>
-            {user === USER_STATES.NOT_LOGGED && (
-              <section className="login-buttons-cotainer">
-                <Button onClick={handleClickLoginGitHub}>
-                  <GitHubIcon fill="#fff" width={32} height={32} />
-                  Login with GitHub
-                </Button>
-                <Button onClick={handleClickLoginGoogle}>
-                  <GoogleIcon width={32} />
-                  Login with Google
-                </Button>
-              </section>
-            )}
-            {user === USER_STATES.UNKNOW && <Spinner />}
-          </div>
-        </section>
-      </AppLayout>
+      <section>
+        <Logo width="35%" />
+        <h1>Nexter</h1>
+        <h2>
+          Talk about development <br /> with developers
+        </h2>
+        <div>
+          {user === USER_STATES.NOT_LOGGED && (
+            <section className="login-buttons-cotainer">
+              <Button onClick={handleClickLoginGitHub}>
+                <GitHubIcon fill="#fff" width={32} height={32} />
+                Login with GitHub
+              </Button>
+              <Button onClick={handleClickLoginGoogle}>
+                <GoogleIcon width={32} />
+                Login with Google
+              </Button>
+            </section>
+          )}
+          {user === USER_STATES.UNKNOW && <Spinner />}
+        </div>
+      </section>
 
       <style jsx>{`
         section {
