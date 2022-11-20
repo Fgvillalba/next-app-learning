@@ -29,7 +29,7 @@ yarn-error.log*
 .env*.local
 
 #eslint
-eslintcache
+.eslintcache
 
 # vercel
 .vercel
@@ -39,4 +39,4 @@ eslintcache
 next-env.d.ts
 
 # firebase keys
-/firebase/firebase-keys.json
+firebase/firebase-keys.json
