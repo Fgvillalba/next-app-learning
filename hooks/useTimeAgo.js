@@ -29,7 +29,6 @@ export default function useTimeAgo(timestamp) {
   useEffect(() => {
     if (isdateTimeFormatSupported) {
       const interval = setInterval(() => {
-        console.log("interval")
         const newTimeAgo = getDateDif(timestamp)
         setTimeAgo(newTimeAgo)
       }, 5000)
