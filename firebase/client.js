@@ -18,15 +18,7 @@ import {
 } from "firebase/auth"
 import { getStorage, ref, uploadBytesResumable } from "firebase/storage"
 
-const firebaseConfig = {
-  apiKey: "AIzaSyCQe_GkHfNW9jomu6tfrNIh_A0htvg0pl0",
-  authDomain: "nexter-71d26.firebaseapp.com",
-  projectId: "nexter-71d26",
-  storageBucket: "nexter-71d26.appspot.com",
-  messagingSenderId: "44345703366",
-  appId: "1:44345703366:web:777a0a45a45c3bccf450c7",
-  measurementId: "G-CB0SCJHCED",
-}
+const firebaseConfig = JSON.parse(process.env.NEXT_PUBLIC_FIREBASE_CONFIG)
 
 const app = initializeApp(firebaseConfig)
 const db = getFirestore(app)
